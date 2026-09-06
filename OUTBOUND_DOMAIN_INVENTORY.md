@@ -1,6 +1,6 @@
 # Outbound Domain Inventory (Exhaustive)
 
-Generated: 2026-09-03T09:46:30.680Z
+Generated: 2026-09-06T19:57:07.549Z
 
 Repository: `decide`
 
@@ -10,22 +10,22 @@ Lockfiles and binary image assets are excluded to reduce noise.
 
 ## 1) Snapshot
 
-- Total URL occurrences scanned: **3101**
-- Valid URL occurrences parsed: **3091**
-- Invalid/truncated URL occurrences: **10**
-- Unique hosts: **241**
-- Critical integration hosts: **14**
+- Total URL occurrences scanned: **3128**
+- Valid URL occurrences parsed: **3116**
+- Invalid/truncated URL occurrences: **12**
+- Unique hosts: **245**
+- Critical integration hosts: **15**
 - First-party hosts: **10**
-- Third-party hosts: **231**
+- Third-party hosts: **235**
 
 ### Risk-tier distribution
 
-- T0-critical-runtime: 4
+- T0-critical-runtime: 5
 - T1-auth-billing: 4
 - T1-observability: 1
 - T1-platform-control: 5
 - T2-first-party-surface: 8
-- T3-content-static: 219
+- T3-content-static: 222
 
 ### Top hosts by URL occurrences
 
@@ -72,6 +72,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | accounts.decide.fyi | 1 | 1 | config_or_data | T1-auth-billing (Auth, payment, or customer-contact dependency.) | clerk, first_party | vercel.json:34 |
 | api.cloudflare.com | 1 | 1 | other | T1-platform-control (Platform/control-plane dependency.) | cloudflare, third_party | api/policy-fetch-hook.js:201 |
 | clerk.decide.fyi | 1 | 1 | config_or_data | T1-auth-billing (Auth, payment, or customer-contact dependency.) | clerk, first_party | vercel.json:34 |
+| evidence-test.supabase.co | 1 | 1 | other | T0-critical-runtime (Direct runtime dependency for decisioning/fetch/storage.) | supabase, third_party | scripts/test-policy-evidence-snapshot.js:32 |
 
 ## 3) Full Host Inventory (Alphabetical, Exhaustive)
 
@@ -87,10 +88,10 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | api.axiom.co | 3 | 2 | other | T1-observability | axiom, third_party | lib/log.js:9, lib/metrics-axiom.js:65, lib/metrics-axiom.js:70 |
 | api.cloudflare.com | 1 | 1 | other | T1-platform-control | cloudflare, third_party | api/policy-fetch-hook.js:201 |
 | api.decide.fyi | 99 | 29 | config_or_data, docs_content, other | T2-first-party-surface | first_party | README.md:25, README.md:25, README.md:26 |
-| attacker.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-mcp.js:650 |
+| attacker.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-mcp.js:651 |
 | beta.example | 2 | 1 | other | T3-content-static | third_party | scripts/test-policy-coverage-scorecard.js:42, scripts/test-policy-coverage-scorecard.js:48 |
 | bitwarden.com | 20 | 20 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:63, public/rules/policy-sources.json:63, public/rules/return-policy-sources.json:63 |
-| budget.example.test | 3 | 2 | other | T3-content-static | third_party | scripts/test-decision-contract.js:3254, scripts/test-decision-contract.js:3258, scripts/test-gemini-usage-budget.js:16 |
+| budget.example.test | 3 | 2 | other | T3-content-static | third_party | scripts/test-decision-contract.js:3255, scripts/test-decision-contract.js:3259, scripts/test-gemini-usage-budget.js:16 |
 | bumble.com | 17 | 17 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:67, public/rules/policy-sources.json:67, public/rules/return-policy-sources.json:67 |
 | cancel.decide.fyi | 10 | 5 | config_or_data, docs_content, frontend, other | T2-first-party-surface | first_party | README.md:208, README.md:235, README.md:251 |
 | cdn.jsdelivr.net | 1 | 1 | config_or_data | T3-content-static | third_party | vercel.json:34 |
@@ -102,7 +103,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | cursor.com | 2 | 2 | config_or_data, docs_content | T3-content-static | third_party | README.md:198, distribution/mcp-directories.json:199 |
 | customercenter.wsj.com | 21 | 15 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:609, public/rules/cancel-policy-sources.json:612, public/rules/policy-sources.json:535 |
 | decide.fyi | 5 | 4 | other | T2-first-party-surface | first_party | api/track.js:120, lib/policy-vendor-candidate-monitor.js:137, lib/policy-vendor-candidate-monitor.js:164 |
-| dedicated.example.test | 2 | 1 | other | T3-content-static | third_party | scripts/test-gemini-usage-budget.js:108, scripts/test-gemini-usage-budget.js:114 |
+| dedicated.example.test | 2 | 1 | other | T3-content-static | third_party | scripts/test-gemini-usage-budget.js:114, scripts/test-gemini-usage-budget.js:120 |
 | developers.openai.com | 1 | 1 | config_or_data | T3-content-static | third_party | chatgpt-app-submission.json:2 |
 | discord.com | 21 | 18 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:133, public/rules/policy-sources.json:129, public/rules/return-policy-sources.json:129 |
 | docs.github.com | 15 | 15 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:201, public/rules/policy-sources.json:198, public/rules/return-policy-sources.json:198 |
@@ -111,6 +112,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | en-americas-support.nintendo.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:320, rules/cancel-policy-confirmed-baseline.json:374, rules/cancel-policy-coverage-state.json:1011 |
 | en.help.roblox.com | 13 | 13 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:557, public/rules/policy-sources.json:507, public/rules/return-policy-sources.json:507 |
 | evernote.com | 20 | 10 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:176, public/rules/cancel-policy-sources.json:177, public/rules/policy-sources.json:173 |
+| evidence-test.supabase.co | 1 | 1 | other | T0-critical-runtime | supabase, third_party | scripts/test-policy-evidence-snapshot.js:32 |
 | example.com | 22 | 6 | docs_content, other | T3-content-static | third_party | README.md:588, scripts/test-check-policies.js:1036, scripts/test-check-policies.js:1037 |
 | example.my.salesforce.com | 1 | 1 | other | T3-content-static | third_party | sdk/examples/crm-writeback.js:36 |
 | example.supabase.co | 8 | 4 | other | T0-critical-runtime | supabase, third_party | scripts/test-mcp-adoption-api.js:33, scripts/test-mcp-telemetry.js:97, scripts/test-mcp-telemetry.js:108 |
@@ -119,7 +121,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | fonts.googleapis.com | 1 | 1 | config_or_data | T3-content-static | google_fonts, third_party | vercel.json:34 |
 | fonts.gstatic.com | 1 | 1 | config_or_data | T3-content-static | google_fonts, third_party | vercel.json:34 |
 | gamma.example | 2 | 1 | other | T3-content-static | third_party | scripts/test-policy-coverage-scorecard.js:72, scripts/test-policy-coverage-scorecard.js:73 |
-| gemini-budget.contract.test | 1 | 1 | other | T3-content-static | third_party | scripts/test-decision-contract.js:36 |
+| gemini-budget.contract.test | 1 | 1 | other | T3-content-static | third_party | scripts/test-decision-contract.js:37 |
 | generativelanguage.googleapis.com | 2 | 2 | config_or_data, other | T0-critical-runtime | gemini, third_party | api/decide.js:500, vercel.json:34 |
 | github.com | 93 | 16 | config_or_data, data_source, docs_content, frontend, other | T1-platform-control | github, third_party | distribution/mcp-directories.json:20, distribution/mcp-directories.json:127, distribution/mcp-directories.json:211 |
 | glama.ai | 2 | 2 | config_or_data | T3-content-static | third_party | distribution/mcp-directories.json:139, glama.json:2 |
@@ -127,7 +129,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | hellofreshusa.zendesk.com | 9 | 9 | config_or_data, data_source | T3-content-static | third_party | public/rules/policy-sources.json:231, public/rules/return-policy-sources.json:231, rules/policy-confirmed-baseline.json:276 |
 | help.audible.com | 13 | 11 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:55, public/rules/cancel-policy-sources.json:59, public/rules/policy-sources.json:59 |
 | help.britbox.com | 2 | 2 | config_or_data | T3-content-static | third_party | rules/cancel-policy-confirmed-baseline.json:87, rules/cancel-policy-semantic-state.json:1667 |
-| help.clickup.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:266, rules/policy-vendor-candidates.json:267, rules/policy-vendor-candidates.json:273 |
+| help.clickup.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:23, docs/reviews/policy-candidate-applicability-20260906.md:23, rules/policy-vendor-candidates.json:368 |
 | help.crunchyroll.com | 38 | 16 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:111, public/rules/cancel-policy-sources.json:120, public/rules/cancel-policy-sources.json:121 |
 | help.discoveryplus.com | 4 | 4 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:655, rules/cancel-policy-confirmed-baseline.json:157, rules/cancel-policy-semantic-state.json:1418 |
 | help.disneyplus.com | 16 | 11 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:137, public/rules/policy-sources.json:141, public/rules/policy-sources.json:142 |
@@ -141,18 +143,18 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | help.hinge.co | 30 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:242, public/rules/cancel-policy-sources.json:245, public/rules/cancel-policy-sources.json:246 |
 | help.hulu.com | 3 | 3 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:250, rules/cancel-policy-confirmed-baseline.json:269, rules/cancel-policy-sources.json:250 |
 | help.max.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:296, rules/cancel-policy-confirmed-baseline.json:325, rules/cancel-policy-coverage-state.json:869 |
-| help.miro.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:152, rules/policy-vendor-candidates.json:153, rules/policy-vendor-candidates.json:159 |
+| help.miro.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:44, docs/reviews/policy-candidate-applicability-20260906.md:29, rules/policy-vendor-candidates.json:203 |
 | help.netflix.com | 12 | 12 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:316, public/rules/policy-sources.json:304, public/rules/return-policy-sources.json:304 |
 | help.nytimes.com | 4 | 4 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:597, rules/cancel-policy-confirmed-baseline.json:360, rules/cancel-policy-semantic-state.json:1278 |
 | help.openai.com | 23 | 15 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:91, public/rules/cancel-policy-sources.json:94, public/rules/policy-sources.json:87 |
 | help.paramountplus.com | 15 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:352, public/rules/policy-sources.json:328, public/rules/return-policy-sources.json:328 |
-| help.skillshare.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:38, rules/policy-vendor-candidates.json:39, rules/policy-vendor-candidates.json:45 |
+| help.skillshare.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:128, docs/reviews/policy-candidate-applicability-20260906.md:53, rules/policy-vendor-candidates.json:38 |
 | help.snapchat.com | 4 | 4 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:626, rules/cancel-policy-confirmed-baseline.json:493, rules/cancel-policy-semantic-state.json:1367 |
 | help.soundcloud.com | 22 | 16 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:650, public/rules/policy-sources.json:588, public/rules/policy-sources.json:591 |
 | help.starz.com | 2 | 2 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:666, rules/cancel-policy-sources.json:666 |
 | help.twitch.tv | 5 | 4 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:458, rules/cancel-policy-change-candidates.json:182, rules/cancel-policy-change-candidates.json:189 |
-| help.typeform.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:114, rules/policy-vendor-candidates.json:115, rules/policy-vendor-candidates.json:121 |
-| help.vimeo.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:76, rules/policy-vendor-candidates.json:77, rules/policy-vendor-candidates.json:83 |
+| help.typeform.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:86, docs/reviews/policy-candidate-applicability-20260906.md:41, rules/policy-vendor-candidates.json:148 |
+| help.vimeo.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:107, docs/reviews/policy-candidate-applicability-20260906.md:47, rules/policy-vendor-candidates.json:102 |
 | help.x.com | 12 | 9 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:638, public/rules/policy-sources.json:572, public/rules/return-policy-sources.json:572 |
 | helpcenter.washingtonpost.com | 16 | 12 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:617, public/rules/policy-sources.json:543, public/rules/policy-sources.json:546 |
 | hingeapp.zendesk.com | 2 | 2 | config_or_data | T3-content-static | third_party | rules/trial-policy-confirmed-baseline.json:290, rules/trial-policy-semantic-state.json:577 |
@@ -168,6 +170,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | outside.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-coverage-scorecard.js:131 |
 | platform.openai.com | 1 | 1 | config_or_data | T3-content-static | third_party | distribution/mcp-directories.json:175 |
 | play.google.com | 2 | 2 | config_or_data, data_source | T3-content-static | third_party | public/rules/trial-policy-sources.json:210, rules/trial-policy-sources.json:210 |
+| policy-evidence-fixture.invalid | 1 | 1 | other | T3-content-static | third_party | scripts/test-helpers/install-policy-evidence-fixture.js:23 |
 | policy.decide.fyi | 34 | 20 | config_or_data, docs_content, frontend, other | T2-first-party-surface | first_party | DISTRIBUTION.md:10, DISTRIBUTION.md:47, DISTRIBUTION.md:132 |
 | premium.linkedin.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/trial-policy-sources.json:270, rules/trial-policy-confirmed-baseline.json:339, rules/trial-policy-coverage-state.json:881 |
 | preview.example.com | 1 | 1 | docs_content | T3-content-static | third_party | docs/FIRST_CUSTOMER_RUNBOOK.md:42 |
@@ -184,11 +187,11 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | run-blocked.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-check-policies.js:327 |
 | secret.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-check-policies.js:89 |
 | secure.wsj-asia.com | 6 | 6 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:613, public/rules/policy-sources.json:539, public/rules/return-policy-sources.json:539 |
-| shared.example.test | 1 | 1 | other | T3-content-static | third_party | scripts/test-gemini-usage-budget.js:109 |
+| shared.example.test | 1 | 1 | other | T3-content-static | third_party | scripts/test-gemini-usage-budget.js:115 |
 | slack.com | 17 | 17 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:405, public/rules/policy-sources.json:376, public/rules/return-policy-sources.json:376 |
 | smithery.ai | 4 | 3 | config_or_data, docs_content, other | T3-content-static | third_party | DISTRIBUTION.md:46, distribution/mcp-directories.json:103, distribution/mcp-directories.json:115 |
 | soundcloud.com | 6 | 6 | config_or_data, data_source | T3-content-static | third_party | public/rules/policy-sources.json:592, public/rules/return-policy-sources.json:592, public/rules/trial-policy-sources.json:575 |
-| static.modelcontextprotocol.io | 2 | 2 | config_or_data, other | T3-content-static | third_party | lib/policy-mcp-metadata.js:53, server.json:2 |
+| static.modelcontextprotocol.io | 2 | 2 | config_or_data, other | T3-content-static | third_party | lib/policy-mcp-metadata.js:70, server.json:2 |
 | store.playstation.com | 3 | 3 | config_or_data | T3-content-static | third_party | rules/trial-policy-confirmed-baseline.json:465, rules/trial-policy-coverage-state.json:1206, rules/trial-policy-semantic-state.json:844 |
 | store.ubisoft.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/trial-policy-sources.json:499, rules/trial-policy-confirmed-baseline.json:633, rules/trial-policy-coverage-state.json:1850 |
 | streak.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-check-policies.js:336 |
@@ -208,7 +211,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | support.grammarly.com | 24 | 16 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:218, public/rules/cancel-policy-sources.json:221, public/rules/policy-sources.json:215 |
 | support.lastpass.com | 3 | 3 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:499, rules/cancel-policy-confirmed-baseline.json:304, rules/cancel-policy-sources.json:499 |
 | support.microsoft.com | 20 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:300, public/rules/cancel-policy-sources.json:304, public/rules/policy-sources.json:288 |
-| support.monday.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:190, rules/policy-vendor-candidates.json:191, rules/policy-vendor-candidates.json:197 |
+| support.monday.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:65, docs/reviews/policy-candidate-applicability-20260906.md:35, rules/policy-vendor-candidates.json:258 |
 | support.myfitnesspal.com | 19 | 13 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:528, public/rules/cancel-policy-sources.json:537, public/rules/policy-sources.json:477 |
 | support.nfl.com | 5 | 5 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:585, rules/cancel-policy-confirmed-baseline.json:367, rules/cancel-policy-semantic-state.json:1316 |
 | support.nordvpn.com | 20 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:328, public/rules/cancel-policy-sources.json:332, public/rules/policy-sources.json:316 |
@@ -220,7 +223,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | support.strava.com | 8 | 8 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:422, public/rules/policy-sources.json:393, public/rules/return-policy-sources.json:393 |
 | support.substack.com | 21 | 17 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:621, public/rules/policy-sources.json:551, public/rules/policy-sources.json:554 |
 | support.surfshark.com | 12 | 12 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:426, public/rules/policy-sources.json:397, public/rules/return-policy-sources.json:397 |
-| support.thinkific.com | 6 | 1 | config_or_data | T3-content-static | third_party | rules/policy-vendor-candidates.json:228, rules/policy-vendor-candidates.json:229, rules/policy-vendor-candidates.json:235 |
+| support.thinkific.com | 9 | 3 | config_or_data, docs_content | T3-content-static | third_party | docs/reviews/policy-candidate-applicability-20260906.json:149, docs/reviews/policy-candidate-applicability-20260906.md:59, rules/policy-vendor-candidates.json:313 |
 | support.tidal.com | 22 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:430, public/rules/cancel-policy-sources.json:434, public/rules/policy-sources.json:401 |
 | support.wix.com | 12 | 12 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:475, public/rules/policy-sources.json:437, public/rules/return-policy-sources.json:437 |
 | support.xbox.com | 15 | 13 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:479, public/rules/policy-sources.json:441, public/rules/return-policy-sources.json:441 |
@@ -232,6 +235,8 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | todoist.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/trial-policy-sources.json:419, rules/trial-policy-confirmed-baseline.json:612, rules/trial-policy-coverage-state.json:1440 |
 | trial.decide.fyi | 10 | 5 | config_or_data, docs_content, frontend, other | T2-first-party-surface | first_party | README.md:210, README.md:237, README.md:261 |
 | tv.youtube.com | 22 | 20 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:487, public/rules/policy-sources.json:449, public/rules/return-policy-sources.json:449 |
+| vendor.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-vendor-lifecycle.js:93 |
+| wrong.example | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-evidence-snapshot.js:49 |
 | www.adobe.com | 24 | 20 | config_or_data, data_source | T3-content-static | third_party | public/replay/rulebook-v1/cancel-policy-notary-penalty.json:221, public/replay/rulebook-v1/cancel-policy-notary-penalty.json:427, public/replay/rulebook-v1/refund-policy-notary-allow.json:211 |
 | www.amazon.com | 111 | 21 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/cancel-policy-sources.json:18, public/rules/cancel-policy-sources.json:21, public/rules/cancel-policy-sources.json:22 |
 | www.amcplus.com | 15 | 15 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:676, public/rules/policy-sources.json:614, public/rules/return-policy-sources.json:614 |
