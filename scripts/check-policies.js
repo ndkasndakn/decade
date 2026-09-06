@@ -3738,11 +3738,10 @@ export async function checkPolicySet({
   }
 
   const sources = readJson(sourcesPath, { vendors: {} });
-  const storedHashProfile =
+  const sourceHashProfile =
     typeof sources.hash_profile === "string" && sources.hash_profile.trim()
       ? sources.hash_profile.trim()
       : "";
-  const rebaselineForProfile = storedHashProfile !== HASH_PROFILE_ID;
   const storedHashes = readJson(hashesPath, {});
   const storedCandidates = readJson(candidatesPath, {});
   const storedCoverage = readJson(coveragePath, { vendors: {} });
@@ -3750,6 +3749,17 @@ export async function checkPolicySet({
   const storedBaselineState = readJson(baselinePath, { vendors: {} });
   const storedDailyFingerprintState = readJson(dailyFingerprintPath, { vendors: {} });
   const storedBlockedRetryState = readJson(blockedRetryPath, { vendors: {} });
+  // Mutable monitor state survives clean checkouts; source-file monitor metadata does not.
+  // Only matching policy/profile identities across every comparison artifact can supersede it.
+  const profileStates = [storedSemanticState, storedBaselineState, storedDailyFingerprintState];
+  const hasStateProfile = profileStates.some(state => Boolean(state?.hash_profile));
+  const stateProfilesAgree = profileStates.every(state => state?.policy === name
+    && typeof state?.hash_profile === "string" && state.hash_profile.trim()
+    && state.hash_profile === profileStates[0].hash_profile);
+  const storedHashProfile = hasStateProfile
+    ? (stateProfilesAgree ? profileStates[0].hash_profile : "")
+    : sourceHashProfile;
+  const rebaselineForProfile = storedHashProfile !== HASH_PROFILE_ID;
   const storedBaselineVendorsRaw =
     storedBaselineState && typeof storedBaselineState.vendors === "object" && storedBaselineState.vendors
       ? storedBaselineState.vendors

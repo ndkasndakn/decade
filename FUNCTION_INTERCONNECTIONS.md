@@ -1,6 +1,6 @@
 # Function Inventory + Interconnection Map
 
-Generated: 2026-09-06 22:31:07 CEST
+Generated: 2026-09-06 22:41:43 CEST
 
 ## Scope
 
@@ -649,12 +649,12 @@ scripts/check-policies.js:3680:export async function checkPolicySet({
 scripts/check-policies.js:370:function sleep(ms) {
 scripts/check-policies.js:374:export function createMinIntervalScheduler({ minIntervalMs = 0, sleepFn = sleep, nowFn = Date.now } = {}) {
 scripts/check-policies.js:379:  return function schedule(task) {
-scripts/check-policies.js:3870:  const ensureCoverageEntry = (vendor) => {
-scripts/check-policies.js:3877:  const markSuccessfulFetch = (vendor, whenUtc, fetchLane = "") => {
-scripts/check-policies.js:3885:  const markConfirmedChange = (vendor, whenUtc) => {
-scripts/check-policies.js:3890:  const getConfiguredSourceUrl = (vendorConfig) => {
-scripts/check-policies.js:3900:  const getVendorVolatilityTier = (vendorConfig, sourceUrl = "") => {
-scripts/check-policies.js:3936:  const clearBlockedRetryQueueEntry = (vendor) => {
+scripts/check-policies.js:3880:  const ensureCoverageEntry = (vendor) => {
+scripts/check-policies.js:3887:  const markSuccessfulFetch = (vendor, whenUtc, fetchLane = "") => {
+scripts/check-policies.js:3895:  const markConfirmedChange = (vendor, whenUtc) => {
+scripts/check-policies.js:3900:  const getConfiguredSourceUrl = (vendorConfig) => {
+scripts/check-policies.js:3910:  const getVendorVolatilityTier = (vendorConfig, sourceUrl = "") => {
+scripts/check-policies.js:3946:  const clearBlockedRetryQueueEntry = (vendor) => {
 scripts/check-policies.js:400:function jitter(ms) {
 scripts/check-policies.js:406:function normalizeFetchLane(value) {
 scripts/check-policies.js:410:function normalizeFetchLaneList(values) {
@@ -671,11 +671,11 @@ scripts/check-policies.js:504:function toDateOnlyUtc(date = new Date()) {
 scripts/check-policies.js:508:function addUtcDays(value = "", days = 0) {
 scripts/check-policies.js:515:function toZeroPolicyCounts() {
 scripts/check-policies.js:519:function buildZeroChangeContinuityAlert(dateUtc = "") {
-scripts/check-policies.js:5524:async function main() {
+scripts/check-policies.js:5534:async function main() {
 scripts/check-policies.js:565:function summarizePolicyCounts(changedItems) {
 scripts/check-policies.js:574:function toPolicyCountObject(changedItems) {
 scripts/check-policies.js:584:function getPolicyAlertFeedMaxEntries() {
-scripts/check-policies.js:5890:  const toPolicyCountString = (items) => Object.entries(summarizePolicyCounts(items))
+scripts/check-policies.js:5900:  const toPolicyCountString = (items) => Object.entries(summarizePolicyCounts(items))
 scripts/check-policies.js:590:function getPolicyAlertIncludeZeroChange() {
 scripts/check-policies.js:595:function buildRunUrl() {
 scripts/check-policies.js:602:function sortAlertsByGeneratedUtcDesc(alerts = []) {
@@ -802,12 +802,13 @@ scripts/smoke-test.js:50:function parseJson(label, body) {
 scripts/smoke-test.js:58:async function runCase(label, handler, reqOptions, assertFn) {
 scripts/smoke-test.js:67:function expect(condition, message) {
 scripts/smoke-test.js:73:async function main() {
-scripts/test-check-policies.js:1012:function testFallbackSignalTransitionActionableThreshold() {
-scripts/test-check-policies.js:1035:function testNormalizeSourceUrlForComparisonCanonicalizesTrivialDifferences() {
-scripts/test-check-policies.js:1041:function testEvaluateVendorSourceMigrationDetectsPrimaryUrlChanges() {
-scripts/test-check-policies.js:1050:function testEvaluateVendorSourceMigrationSkipsStableOrMissingSources() {
+scripts/test-check-policies.js:1008:function testFallbackSignalTransitionStableSignatureResetsConsecutiveRuns() {
+scripts/test-check-policies.js:1027:function testFallbackSignalTransitionActionableThreshold() {
+scripts/test-check-policies.js:1050:function testNormalizeSourceUrlForComparisonCanonicalizesTrivialDifferences() {
+scripts/test-check-policies.js:1056:function testEvaluateVendorSourceMigrationDetectsPrimaryUrlChanges() {
 scripts/test-check-policies.js:105:async function testMinIntervalSchedulerSerializesBrowserHookRequests() {
-scripts/test-check-policies.js:1069:async function main() {
+scripts/test-check-policies.js:1065:function testEvaluateVendorSourceMigrationSkipsStableOrMissingSources() {
+scripts/test-check-policies.js:1084:async function main() {
 scripts/test-check-policies.js:138:async function testWorkPoolStartsNextItemWithoutWaitingForBatchPeers() {
 scripts/test-check-policies.js:141:  const releaseFor = (item) => new Promise((resolve) => releases.set(item, resolve));
 scripts/test-check-policies.js:161:async function testWorkPoolPreservesConcurrencyAndCooldown() {
@@ -829,44 +830,43 @@ scripts/test-check-policies.js:467:    const buildPolicySet = (name) => {
 scripts/test-check-policies.js:49:function readJson(path) {
 scripts/test-check-policies.js:508:async function testPolicySetWritesMonitorArtifactTimestamps() {
 scripts/test-check-policies.js:53:function testMonitorCheckDoesNotClaimHumanVerification() {
-scripts/test-check-policies.js:546:function envInt(name, fallback) {
-scripts/test-check-policies.js:552:function configuredCrossRunWindowSize() {
-scripts/test-check-policies.js:556:function configuredDefaultWindowRequired() {
-scripts/test-check-policies.js:561:function configuredHighSignalWindowRequired() {
-scripts/test-check-policies.js:566:function configuredHighSignalMinPolicyHits() {
-scripts/test-check-policies.js:570:function configuredHighSignalMinLines() {
-scripts/test-check-policies.js:574:function testImmediateBlockOnCloudflareAnd403() {
-scripts/test-check-policies.js:587:function testImmediateBlockAllowsZendesk404AsAuxiliary() {
-scripts/test-check-policies.js:600:function testTransientFailureDoesNotImmediateBlock() {
-scripts/test-check-policies.js:612:function testPlain403StillImmediateBlocks() {
-scripts/test-check-policies.js:619:function testLegacyPendingModelDefaults() {
-scripts/test-check-policies.js:628:function testCurrentPendingModelStaysActive() {
-scripts/test-check-policies.js:638:function testZendeskApiTargetForArticle() {
-scripts/test-check-policies.js:649:function testZendeskApiTargetForSection() {
-scripts/test-check-policies.js:660:function testZendeskApiTargetRejectsUnsupportedPaths() {
-scripts/test-check-policies.js:665:function testSemanticSignaturesStableForEmptyTokens() {
-scripts/test-check-policies.js:673:function testSemanticSignaturesStableForMatchingNonEmptyTokens() {
-scripts/test-check-policies.js:681:function testSemanticSignaturesStableRejectsMixedOrDifferentTokens() {
-scripts/test-check-policies.js:694:function testReturnSignalsIgnoreCancellationOnlyLanguage() {
-scripts/test-check-policies.js:705:function testRefundWindowsRequireDirectPolicyLanguage() {
+scripts/test-check-policies.js:561:function envInt(name, fallback) {
+scripts/test-check-policies.js:567:function configuredCrossRunWindowSize() {
+scripts/test-check-policies.js:571:function configuredDefaultWindowRequired() {
+scripts/test-check-policies.js:576:function configuredHighSignalWindowRequired() {
+scripts/test-check-policies.js:581:function configuredHighSignalMinPolicyHits() {
+scripts/test-check-policies.js:585:function configuredHighSignalMinLines() {
+scripts/test-check-policies.js:589:function testImmediateBlockOnCloudflareAnd403() {
+scripts/test-check-policies.js:602:function testImmediateBlockAllowsZendesk404AsAuxiliary() {
+scripts/test-check-policies.js:615:function testTransientFailureDoesNotImmediateBlock() {
+scripts/test-check-policies.js:627:function testPlain403StillImmediateBlocks() {
+scripts/test-check-policies.js:634:function testLegacyPendingModelDefaults() {
+scripts/test-check-policies.js:643:function testCurrentPendingModelStaysActive() {
+scripts/test-check-policies.js:653:function testZendeskApiTargetForArticle() {
+scripts/test-check-policies.js:664:function testZendeskApiTargetForSection() {
+scripts/test-check-policies.js:675:function testZendeskApiTargetRejectsUnsupportedPaths() {
+scripts/test-check-policies.js:680:function testSemanticSignaturesStableForEmptyTokens() {
+scripts/test-check-policies.js:688:function testSemanticSignaturesStableForMatchingNonEmptyTokens() {
+scripts/test-check-policies.js:696:function testSemanticSignaturesStableRejectsMixedOrDifferentTokens() {
+scripts/test-check-policies.js:709:function testReturnSignalsIgnoreCancellationOnlyLanguage() {
 scripts/test-check-policies.js:71:function testDistinctTier1FailuresCountVendorsOnceAcrossPolicies() {
-scripts/test-check-policies.js:737:function testRelativeMetadataStaysStableAcrossDailyRuns() {
-scripts/test-check-policies.js:759:function testTrialWindowsRequireDirectPolicyLanguage() {
-scripts/test-check-policies.js:771:function testDailyAlertsPreserveReviewEvidence() {
-scripts/test-check-policies.js:801:function testStrictDailyFeedRequiresReviewedChangeEvidence() {
-scripts/test-check-policies.js:830:function testBuildChangeKeyPrefersSemanticSignature() {
-scripts/test-check-policies.js:835:function testBuildChangeKeyFallsBackToHash() {
-scripts/test-check-policies.js:840:function testBuildChangeKeyHandlesMissingValues() {
-scripts/test-check-policies.js:845:function testHighSignalWindowCandidateDetection() {
-scripts/test-check-policies.js:866:function testAdaptiveWindowRequiredForCandidate() {
+scripts/test-check-policies.js:720:function testRefundWindowsRequireDirectPolicyLanguage() {
+scripts/test-check-policies.js:752:function testRelativeMetadataStaysStableAcrossDailyRuns() {
+scripts/test-check-policies.js:774:function testTrialWindowsRequireDirectPolicyLanguage() {
+scripts/test-check-policies.js:786:function testDailyAlertsPreserveReviewEvidence() {
+scripts/test-check-policies.js:816:function testStrictDailyFeedRequiresReviewedChangeEvidence() {
+scripts/test-check-policies.js:845:function testBuildChangeKeyPrefersSemanticSignature() {
+scripts/test-check-policies.js:850:function testBuildChangeKeyFallsBackToHash() {
+scripts/test-check-policies.js:855:function testBuildChangeKeyHandlesMissingValues() {
+scripts/test-check-policies.js:860:function testHighSignalWindowCandidateDetection() {
 scripts/test-check-policies.js:86:function testBrowserHookFailuresExposeSanitizedProviderReasons() {
-scripts/test-check-policies.js:889:function testEvaluateSignalWindowSupportsRequiredOverride() {
-scripts/test-check-policies.js:900:function testCountSignalWindowChangeFlips() {
-scripts/test-check-policies.js:913:function testVolatileFlipThresholdOverrides() {
-scripts/test-check-policies.js:926:function testSourceVolatilityTierResolution() {
-scripts/test-check-policies.js:946:function testVolatileFlipThresholdIncludesFlakyTierDelta() {
-scripts/test-check-policies.js:964:function testFallbackSignalTransitionRequiresStrongSignatures() {
-scripts/test-check-policies.js:993:function testFallbackSignalTransitionStableSignatureResetsConsecutiveRuns() {
+scripts/test-check-policies.js:881:function testAdaptiveWindowRequiredForCandidate() {
+scripts/test-check-policies.js:904:function testEvaluateSignalWindowSupportsRequiredOverride() {
+scripts/test-check-policies.js:915:function testCountSignalWindowChangeFlips() {
+scripts/test-check-policies.js:928:function testVolatileFlipThresholdOverrides() {
+scripts/test-check-policies.js:941:function testSourceVolatilityTierResolution() {
+scripts/test-check-policies.js:961:function testVolatileFlipThresholdIncludesFlakyTierDelta() {
+scripts/test-check-policies.js:979:function testFallbackSignalTransitionRequiresStrongSignatures() {
 scripts/test-decision-contract.js:1032:async function testDecideRulebookRejectsExecutableOperator() {
 scripts/test-decision-contract.js:1070:async function testDecideRulebookRejectsExecutablePayloadFields() {
 scripts/test-decision-contract.js:108:function sha256(value) {

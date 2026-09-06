@@ -1,6 +1,6 @@
 # Outbound Domain Inventory (Exhaustive)
 
-Generated: 2026-09-06T20:31:13.178Z
+Generated: 2026-09-06T20:41:47.247Z
 
 Repository: `decide`
 
@@ -113,7 +113,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | en.help.roblox.com | 13 | 13 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:557, public/rules/policy-sources.json:507, public/rules/return-policy-sources.json:507 |
 | evernote.com | 20 | 10 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:176, public/rules/cancel-policy-sources.json:177, public/rules/policy-sources.json:173 |
 | evidence-test.supabase.co | 1 | 1 | other | T0-critical-runtime | supabase, third_party | scripts/test-policy-evidence-snapshot.js:32 |
-| example.com | 22 | 6 | docs_content, other | T3-content-static | third_party | README.md:588, scripts/test-check-policies.js:1036, scripts/test-check-policies.js:1037 |
+| example.com | 22 | 6 | docs_content, other | T3-content-static | third_party | README.md:588, scripts/test-check-policies.js:1051, scripts/test-check-policies.js:1052 |
 | example.my.salesforce.com | 1 | 1 | other | T3-content-static | third_party | sdk/examples/crm-writeback.js:36 |
 | example.supabase.co | 8 | 4 | other | T0-critical-runtime | supabase, third_party | scripts/test-mcp-adoption-api.js:33, scripts/test-mcp-telemetry.js:97, scripts/test-mcp-telemetry.js:108 |
 | example.test | 1 | 1 | other | T3-content-static | third_party | scripts/test-policy-funnel.js:38 |
@@ -137,7 +137,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | help.dropbox.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:153, rules/cancel-policy-confirmed-baseline.json:171, rules/cancel-policy-coverage-state.json:520 |
 | help.ea.com | 5 | 5 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:561, rules/cancel-policy-confirmed-baseline.json:178, rules/cancel-policy-coverage-state.json:1747 |
 | help.evernote.com | 12 | 12 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:173, public/rules/policy-sources.json:170, public/rules/return-policy-sources.json:170 |
-| help.example.com | 2 | 2 | other | T3-content-static | third_party | scripts/test-check-policies.js:935, scripts/test-policy-vendor-candidates.js:21 |
+| help.example.com | 2 | 2 | other | T3-content-static | third_party | scripts/test-check-policies.js:950, scripts/test-policy-vendor-candidates.js:21 |
 | help.hbomax.com | 10 | 10 | config_or_data, data_source | T3-content-static | third_party | public/rules/policy-sources.json:284, public/rules/return-policy-sources.json:284, rules/policy-confirmed-baseline.json:346 |
 | help.headspace.com | 20 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:226, public/rules/cancel-policy-sources.json:229, public/rules/policy-sources.json:223 |
 | help.hinge.co | 30 | 14 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:242, public/rules/cancel-policy-sources.json:245, public/rules/cancel-policy-sources.json:246 |
@@ -260,7 +260,7 @@ These are domains tagged as runtime/ops critical (`vercel`, `github`, `stripe`, 
 | www.duolingo.com | 15 | 14 | config_or_data, data_source, other | T3-content-static | third_party | public/rules/policy-sources.json:158, public/rules/return-policy-sources.json:158, public/rules/trial-policy-sources.json:153 |
 | www.ea.com | 15 | 15 | config_or_data, data_source | T3-content-static | third_party | public/rules/policy-sources.json:511, public/rules/return-policy-sources.json:511, public/rules/trial-policy-sources.json:495 |
 | www.espn.com | 28 | 20 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:165, public/rules/cancel-policy-sources.json:168, public/rules/policy-sources.json:162 |
-| www.example.com | 2 | 1 | other | T3-content-static | third_party | scripts/test-check-policies.js:929, scripts/test-check-policies.js:941 |
+| www.example.com | 2 | 1 | other | T3-content-static | third_party | scripts/test-check-policies.js:944, scripts/test-check-policies.js:956 |
 | www.expressvpn.com | 33 | 17 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:181, public/rules/cancel-policy-sources.json:184, public/rules/cancel-policy-sources.json:185 |
 | www.figma.com | 17 | 17 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:189, public/rules/policy-sources.json:186, public/rules/return-policy-sources.json:186 |
 | www.fitbit.com | 15 | 15 | config_or_data, data_source | T3-content-static | third_party | public/rules/cancel-policy-sources.json:524, public/rules/policy-sources.json:473, public/rules/return-policy-sources.json:473 |
