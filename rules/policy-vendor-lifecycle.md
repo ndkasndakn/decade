@@ -1,0 +1,147 @@
+# Policy Vendor Lifecycle
+
+Generated UTC: 2026-09-06T21:14:01.000Z
+Runtime enforcement contract: trusted_evidence_required_for_new_policy_evaluations
+Verification basis: policy_runtime_code_contract_not_live_deployment_probe
+Automatic candidate promotion: disabled
+
+## Current vendors
+- 1password: monitored
+- adobe: monitored
+- amazon_music_unlimited: monitored
+- amazon_prime: monitored
+- amc_plus: monitored
+- apple_app_store: monitored
+- apple_arcade: monitored
+- apple_music: monitored
+- apple_tv_plus: monitored
+- audible: monitored
+- bitwarden: monitored
+- britbox: monitored
+- bumble: monitored
+- calm: monitored
+- canva: expired; refund:expired(source_freshness_expired), cancel:expired(source_freshness_expired), return:expired(source_freshness_expired), trial:expired(source_freshness_expired)
+- chatgpt_plus: monitored
+- claude_pro: monitored
+- coursera_plus: monitored
+- crunchyroll: degraded; refund:degraded(latest_check_fetch_failed), cancel:degraded(latest_check_fetch_failed), return:degraded(latest_check_fetch_failed), trial:degraded(latest_check_fetch_failed)
+- dashlane: monitored
+- deezer: monitored
+- discord_nitro: monitored
+- discovery_plus: monitored
+- disney_plus: monitored
+- doordash_dashpass: expired; refund:expired(source_freshness_expired), cancel:expired(source_freshness_expired), return:expired(source_freshness_expired), trial:expired(source_freshness_expired)
+- dropbox_us: monitored
+- duolingo: monitored
+- ea_play: monitored
+- espn_plus: monitored
+- evernote: monitored
+- expressvpn: monitored
+- figma: monitored
+- fitbit_premium: monitored
+- fubo_tv: monitored
+- github_pro: monitored
+- google_one: monitored
+- google_play: monitored
+- grammarly: monitored
+- headspace: monitored
+- hellofresh: monitored
+- hinge: monitored
+- hulu: monitored
+- icloud_plus: monitored
+- instacart_plus: monitored
+- keeper: monitored
+- kindle_unlimited: monitored
+- lastpass: monitored
+- linkedin_premium: monitored
+- masterclass: expired; refund:expired(source_freshness_expired), cancel:expired(source_freshness_expired), return:expired(source_freshness_expired), trial:expired(source_freshness_expired)
+- max: monitored
+- microsoft_365: monitored
+- midjourney: monitored
+- mlb_tv: monitored
+- myfitnesspal_premium: expired; trial:expired(source_freshness_expired)
+- netflix: monitored
+- new_york_times: monitored
+- nfl_plus: monitored
+- nintendo_switch_online: monitored
+- noom: monitored
+- nordvpn: monitored
+- notion: monitored
+- paramount_plus: monitored
+- patreon: monitored
+- peacock: monitored
+- peloton: monitored
+- playstation_plus: monitored
+- proton: monitored
+- reddit_premium: monitored
+- ring_protect: monitored
+- roblox_premium: monitored
+- scribd: monitored
+- shutterstock: monitored
+- siriusxm: monitored
+- slack: monitored
+- sling_tv: monitored
+- snapchat_plus: monitored
+- soundcloud_go: monitored
+- spotify: monitored
+- squarespace: monitored
+- starz: monitored
+- strava: monitored
+- substack: monitored
+- surfshark: monitored
+- telegram_premium: monitored
+- tidal: monitored
+- tinder: monitored
+- todoist: monitored
+- twitch: monitored
+- uber_one: monitored
+- ubisoft_plus: monitored
+- wall_street_journal: monitored
+- walmart_plus: monitored
+- washington_post: monitored
+- weightwatchers: expired; refund:expired(source_freshness_expired), cancel:expired(source_freshness_expired), return:expired(source_freshness_expired)
+- wix: monitored
+- x_premium: monitored
+- xbox_game_pass: monitored
+- youtube_premium: monitored
+- youtube_tv: monitored
+- zoom: monitored
+
+## Candidate burn-in
+- ClickUp: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- Miro: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- monday.com: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- Skillshare: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- Thinkific: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- Typeform: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+- Vimeo: candidate
+  - cancel: ready_for_review; observations=101; success=100.00%
+  - refund: ready_for_review; observations=101; success=100.00%
+  - return: candidate; observations=0; success=n/a; blocker=manual_policy_applicability_review_required
+  - trial: ready_for_review; observations=101; success=100.00%
+
+Candidates become ready for human review only after the configured burn-in. Promotion never occurs automatically.
