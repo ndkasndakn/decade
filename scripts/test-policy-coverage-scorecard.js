@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { buildPolicyVendorLifecycleReport } from "../lib/policy-vendor-lifecycle.js";
 
 import {
   buildPolicyCoverageScorecard,
@@ -146,4 +148,16 @@ testScorecardSeparatesTrackedFromAdmittedCoverage();
 console.log("PASS coverage scorecard separates tracked, admitted, and decision-ready coverage");
 testCandidateMetadataAndProductionIdsAreValidated();
 console.log("PASS coverage scorecard validates candidate metadata and admitted-vendor overlap");
-console.log("Policy coverage scorecard tests passed: 2/2");
+const checkedInRegistry = JSON.parse(readFileSync(new URL("../rules/policy-vendor-candidates.json", import.meta.url), "utf8"));
+const checkedInScorecard = buildPolicyCoverageScorecard({ ...buildFixture(), candidateRegistry: checkedInRegistry });
+assert.equal(checkedInScorecard.candidates.manual_review_surface_count, 7);
+assert.equal(checkedInScorecard.production.admitted_vendor_count, 2);
+const checkedInLifecycle = buildPolicyVendorLifecycleReport({ candidateRegistry: checkedInRegistry });
+assert.equal(checkedInLifecycle.candidates.length, 7);
+assert.equal(checkedInLifecycle.candidates.every(candidate => candidate.ready_for_review === false
+  && candidate.blockers.includes("return:manual_policy_applicability_review_required")), true);
+const invalidReviewRegistry = structuredClone(checkedInRegistry);
+invalidReviewRegistry.candidates.skillshare.policies.return.review_status = "implicitly_approved";
+assert.ok(validatePolicyVendorCandidateRegistry(invalidReviewRegistry).some(error => error.includes("candidate_manual_review_status_invalid")));
+console.log("PASS actual candidate registry can report pending sign-off without admitting candidates or accepting unknown statuses");
+console.log("Policy coverage scorecard tests passed: 3/3");

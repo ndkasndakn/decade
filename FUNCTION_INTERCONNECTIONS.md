@@ -1,6 +1,6 @@
 # Function Inventory + Interconnection Map
 
-Generated: 2026-09-06 21:57:07 CEST
+Generated: 2026-09-06 22:31:07 CEST
 
 ## Scope
 
@@ -992,9 +992,9 @@ scripts/test-policy-alerts-api.js:45:function assertCommonPayload(result, expect
 scripts/test-policy-alerts-api.js:58:function assertNoLegacySourceObject(result) {
 scripts/test-policy-alerts-api.js:63:function assertAlertShapeIfPresent(result) {
 scripts/test-policy-alerts-api.js:86:function testAppliesRecordedPolicyEventReviews() {
-scripts/test-policy-coverage-scorecard.js:10:function buildFixture() {
-scripts/test-policy-coverage-scorecard.js:113:function testCandidateMetadataAndProductionIdsAreValidated() {
-scripts/test-policy-coverage-scorecard.js:95:function testScorecardSeparatesTrackedFromAdmittedCoverage() {
+scripts/test-policy-coverage-scorecard.js:115:function testCandidateMetadataAndProductionIdsAreValidated() {
+scripts/test-policy-coverage-scorecard.js:12:function buildFixture() {
+scripts/test-policy-coverage-scorecard.js:97:function testScorecardSeparatesTrackedFromAdmittedCoverage() {
 scripts/test-policy-evidence-snapshot.js:33:const fetchImpl = async (url, init) => {
 scripts/test-policy-feed.js:13:function loadFixture(fileName) {
 scripts/test-policy-feed.js:17:function runFixture(fileName) {
@@ -1042,10 +1042,10 @@ scripts/test-policy-vendor-candidates.js:32:function successfulFetch() {
 scripts/test-policy-vendor-candidates.js:46:async function testObservationSlotsCannotBeInflatedByReruns() {
 scripts/test-policy-vendor-candidates.js:73:async function testFailedFetchIsRecordedWithoutThrowing() {
 scripts/test-policy-vendor-candidates.js:95:async function testOfficialDocumentSourcesAreValidatedAndFetchedOnce() {
-scripts/test-policy-vendor-lifecycle.js:105:function testUnstableCandidateEvidenceCannotGraduate() {
-scripts/test-policy-vendor-lifecycle.js:10:function testCurrentDegradedAndExpiredPoliciesStayDistinct() {
-scripts/test-policy-vendor-lifecycle.js:37:function successObservation(slot) {
-scripts/test-policy-vendor-lifecycle.js:41:function testCandidateNeedsBurnInAndHumanApplicabilityReview() {
+scripts/test-policy-vendor-lifecycle.js:106:function testUnstableCandidateEvidenceCannotGraduate() {
+scripts/test-policy-vendor-lifecycle.js:11:function testCurrentDegradedAndExpiredPoliciesStayDistinct() {
+scripts/test-policy-vendor-lifecycle.js:38:function successObservation(slot) {
+scripts/test-policy-vendor-lifecycle.js:42:function testCandidateNeedsBurnInAndHumanApplicabilityReview() {
 scripts/test-release-gates.js:8:function read(path) {
 scripts/verify-policy-alerts-bridge.js:121:async function fetchJson(url) {
 scripts/verify-policy-alerts-bridge.js:141:async function main() {
@@ -1395,7 +1395,9 @@ scripts/test-policy-candidate-review-packet.js:1:import assert from 'node:assert
 scripts/test-policy-candidate-review-packet.js:2:import { readFileSync } from 'node:fs';
 scripts/test-policy-candidate-review-packet.js:3:import { buildPolicyVendorLifecycleReport } from '../lib/policy-vendor-lifecycle.js';
 scripts/test-policy-coverage-scorecard.js:3:import assert from "node:assert/strict";
-scripts/test-policy-coverage-scorecard.js:5:import {
+scripts/test-policy-coverage-scorecard.js:4:import { readFileSync } from "node:fs";
+scripts/test-policy-coverage-scorecard.js:5:import { buildPolicyVendorLifecycleReport } from "../lib/policy-vendor-lifecycle.js";
+scripts/test-policy-coverage-scorecard.js:7:import {
 scripts/test-policy-evidence-postgres.js:1:import assert from 'node:assert/strict';
 scripts/test-policy-evidence-postgres.js:2:import { execFileSync } from 'node:child_process';
 scripts/test-policy-evidence-postgres.js:3:import { mkdtempSync, readFileSync } from 'node:fs';

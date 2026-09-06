@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Validate candidate registry and coverage contract
+        run: node scripts/test-policy-coverage-scorecard.js
+
       - name: Restore latest policy baseline from aggregation branch
         run: |
           set +e

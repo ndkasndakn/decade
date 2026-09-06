@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import {
   buildPolicyVendorLifecycleReport,
   evaluateMonitoredVendorPolicy,
+  formatPolicyVendorLifecycleMarkdown,
 } from "../lib/policy-vendor-lifecycle.js";
 
 function testCurrentDegradedAndExpiredPoliciesStayDistinct() {
@@ -158,4 +159,10 @@ testCandidateNeedsBurnInAndHumanApplicabilityReview();
 console.log("PASS policy vendor lifecycle requires burn-in and human applicability review");
 testUnstableCandidateEvidenceCannotGraduate();
 console.log("PASS unstable candidate evidence cannot graduate from burn-in");
-console.log("Policy vendor lifecycle tests passed: 3/3");
+const runtimeReport = buildPolicyVendorLifecycleReport();
+const runtimeMarkdown = formatPolicyVendorLifecycleMarkdown(runtimeReport);
+assert.ok(runtimeMarkdown.includes(runtimeReport.runtime_enforcement_mode));
+assert.ok(runtimeMarkdown.includes(runtimeReport.runtime_enforcement_basis));
+assert.equal(runtimeMarkdown.includes("disabled (audit-only)"), false);
+console.log("PASS lifecycle Markdown reports the same enforcement contract and verification limits as JSON");
+console.log("Policy vendor lifecycle tests passed: 4/4");
