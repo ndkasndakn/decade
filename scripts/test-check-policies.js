@@ -541,6 +541,21 @@ async function testPolicySetWritesMonitorArtifactTimestamps() {
   assert.equal(new Set(timestamps).size, 1, "state artifacts should share one monitor timestamp");
   assert.match(timestamps[0], /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
   assert.equal(readJson(paths.sourcesPath).last_verified_utc, "2026-07-15T08:00:00Z");
+
+  // A fresh checkout restores mutable state, not the monitor's source-file edits.
+  const sources = readJson(paths.sourcesPath);
+  writeJson(paths.sourcesPath, { ...sources, hash_profile: "focus-v2" });
+  const restored = await checkPolicySet({ name: "fixture", ...paths, rulesFile: "fixture-rules.json" });
+  assert.equal(restored.rebaselineForProfile, false, "Matching restored state must not be treated as a new hash migration");
+  const currentStates = Object.fromEntries([paths.semanticPath, paths.baselinePath, paths.dailyFingerprintPath]
+    .map(path => [path, readJson(path)]));
+  for (const override of [{ hash_profile: "focus-v2" }, { policy: "different-policy" }, { hash_profile: "" }]) {
+    for (const [path, state] of Object.entries(currentStates)) writeJson(path, state);
+    writeJson(paths.sourcesPath, { ...sources, hash_profile: "focus-v3" });
+    writeJson(paths.dailyFingerprintPath, { ...currentStates[paths.dailyFingerprintPath], ...override });
+    const inconsistent = await checkPolicySet({ name: "fixture", ...paths, rulesFile: "fixture-rules.json" });
+    assert.equal(inconsistent.rebaselineForProfile, true, "Mixed, foreign or incomplete profiles must not inherit the checkout profile");
+  }
 }
 
 function envInt(name, fallback) {

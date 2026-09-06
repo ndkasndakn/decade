@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -337,7 +337,13 @@ mkdirSync(outDir, { recursive: true });
 
 const fixtures = [];
 for (const spec of fixtureSpecs) {
-  const fixture = await buildFixture(spec);
+  const existingPath = join(outDir, `${spec.id.replaceAll("_", "-")}.json`);
+  const existing = existsSync(existingPath) ? JSON.parse(readFileSync(existingPath, "utf8")) : null;
+  // Historical records keep their original rulebook and facts when current rules change.
+  // New policy versions require new fixture IDs, never rewritten historical expectations.
+  const fixture = await buildFixture(existing ? { ...spec, request: existing.replay.request } : spec);
+  if (existing) assert.deepEqual(fixture.body.historical_record, existing.historical_record,
+    `${spec.id}: historical replay drift requires an explicit versioned migration`);
   writeJson(fixture.fileName, fixture.body);
   fixtures.push({
     id: fixture.body.id,

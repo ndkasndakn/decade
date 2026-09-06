@@ -4,7 +4,7 @@ The deterministic notaries and the source monitor have different jobs:
 
 - Rulebooks answer supported requests from reviewed, versioned policy evidence.
 - Monitoring detects source availability and possible policy changes.
-- Monitoring never edits a rulebook or changes a verdict automatically.
+- Monitoring never edits or promotes a rulebook. It can withhold usable evidence; Rulebook v1 then selects review instead of an automated policy outcome.
 
 ## Existing vendor states
 
@@ -15,7 +15,9 @@ The daily checker derives lifecycle state per vendor-policy pair:
 - `expired`: the last successful fetch is older than the policy-specific freshness limit.
 - `deprecated`: a reviewed configuration explicitly retires the vendor.
 
-These states are audit evidence. Runtime enforcement is intentionally disabled until the live state history is complete enough to avoid expiring healthy vendors from an old checked-in snapshot.
+New policy API and MCP evaluations require validated runtime evidence. The server reads a checksum-validated, complete snapshot through the service-only database boundary. It never uses a checked-in file as a runtime fallback. Missing, expired, changed, corrupt or unavailable evidence selects `UNKNOWN` with `automation_safe: false` through Rulebook v1. A failed source fetch alone does not invalidate a still-current reviewed evidence window.
+
+Freshness is per vendor-policy pair: 30 days for refund/cancel/return, 7 days for trial, at most 90 days since human verification and 72 hours since snapshot generation. The earliest deadline wins. The report's `runtime_enforcement_active` describes this code contract, not an independently verified production deployment. See [runtime evidence and rollout](POLICY_EVIDENCE_HARDENING.md).
 
 ## Candidate admission
 
@@ -35,7 +37,9 @@ Manual reruns in the same six-hour slot replace that slot's observation instead 
 
 ## Current candidate pool
 
-Skillshare, Vimeo, Typeform, Miro, monday.com, Thinkific, and ClickUp are monitored through official help-center article APIs. Every monitored source declares `policy_subject: direct_vendor_customer_relationship`; this declaration is validated, but it remains a human-reviewed applicability claim rather than an automated semantic inference. Return-policy applicability remains pending human review for each because these are digital services; the monitor does not infer `not applicable` on its own.
+Skillshare, Vimeo, Typeform, Miro, monday.com, Thinkific, and ClickUp are monitored through official help-center article APIs. Every monitored source declares `policy_subject: direct_vendor_customer_relationship`; this declaration is validated, but it remains a human-reviewed applicability claim rather than an automated semantic inference. The [seven candidate research reviews](reviews/policy-candidate-applicability-20260906.md) are complete. Named maintainer sign-off is pending; Skillshare also needs product segmentation and Thinkific needs broader primary-policy evidence.
+
+Manual applicability approval requires `review_owner`, `reviewed_by`, `reviewed_at_utc`, `review_scope`, `review_id`, HTTPS `evidence_urls` and a scoped not-applicable disposition. A flag alone is not sign-off. Future-dated or 90-day-old approvals do not satisfy admission.
 
 Candidate vendors are part of the tracked network, not the supported-vendor contract. The coverage scorecard keeps three numbers separate:
 
@@ -47,10 +51,11 @@ Candidate vendors are part of the tracked network, not the supported-vendor cont
 
 Each daily run writes:
 
+- `rules/policy-runtime-evidence.json`
 - `rules/policy-vendor-lifecycle.json`
 - `rules/policy-vendor-lifecycle.md`
 - `rules/policy-vendor-candidate-state.json`
 - `rules/policy-coverage-scorecard.json`
 - `rules/policy-coverage-scorecard.md`
 
-The lifecycle report identifies unreliable current vendor-policy pairs and candidates that have earned review. It does not remove vendors, rename public IDs, or change deterministic responses.
+The lifecycle report identifies unreliable current vendor-policy pairs and candidates that have earned review. It does not remove vendors or rename public IDs. The separate runtime snapshot supplies freshness facts to the notary rulebooks; historical replay retains the original facts and verdict.

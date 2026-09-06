@@ -1,3 +1,4 @@
+import "./test-helpers/install-policy-evidence-fixture.js";
 import zendeskWorkflowRoute from "../api/v1/workflows/zendesk/[workflow].js";
 
 function createReq({

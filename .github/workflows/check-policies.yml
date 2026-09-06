@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Validate candidate registry and coverage contract
+        run: node scripts/test-policy-coverage-scorecard.js
+
       - name: Restore latest policy baseline from aggregation branch
         run: |
           set +e
@@ -685,6 +688,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
           path: |
+            rules/policy-runtime-evidence.json
             rules/policy-alert-feed.json
             rules/policy-alert-review-feed.json
             rules/policy-events.ndjson

@@ -1,9 +1,12 @@
 {
   "schema_version": "rulebook_v1",
   "rulebook_id": "trial_policy_notary",
-  "version": "2026-07-15",
+  "version": "2026-09-06",
   "input_schema": {
     "required": [
+      "policy_request",
+      "policy_evidence_current",
+      "policy_evidence",
       "region_supported",
       "plan_supported",
       "vendor_supported",
@@ -23,6 +26,9 @@
       "policy_source_notes"
     ],
     "properties": {
+      "policy_request": { "type": "object" },
+      "policy_evidence_current": { "type": "boolean" },
+      "policy_evidence": { "type": "object" },
       "region_supported": { "type": "boolean" },
       "plan_supported": { "type": "boolean" },
       "vendor_supported": { "type": "boolean" },
@@ -74,6 +80,17 @@
         "verdict": "UNKNOWN",
         "action": "request_supported_vendor",
         "reason_code": "UNSUPPORTED_VENDOR"
+      }
+    },
+    {
+      "rule_id": "review_policy_evidence",
+      "priority": 475,
+      "condition": { "field": "policy_evidence_current", "operator": "eq", "value": false },
+      "outcome": {
+        "decision": "review",
+        "verdict": "UNKNOWN",
+        "action": "review_policy_evidence",
+        "reason_code": "POLICY_EVIDENCE_NOT_CURRENT"
       }
     },
     {

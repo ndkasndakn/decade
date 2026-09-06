@@ -1,4 +1,5 @@
 import health from "../api/health.js";
+import "./test-helpers/install-policy-evidence-fixture.js";
 import v1PolicyRoute from "../api/v1/[policy]/[action].js";
 import refundMcp from "../api/mcp.js";
 import cancelMcp from "../api/cancel-mcp.js";

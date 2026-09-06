@@ -461,7 +461,7 @@ The source tracker monitors official vendor documentation and terms of service;
 it does not automatically promote page text into a verdict.
 
 - **Six-hour source checks** — The `Daily Policy Check` workflow runs every six hours across refund, cancellation, return, and trial sources. Material signals enter a human review queue.
-- **Human-verification freshness** — `npm run audit:policy-freshness` reports the age of the last reviewed source set independently from tracker uptime.
+- **Human-verification freshness**: `npm run audit:policy-freshness` reports reviewed-source age independently from tracker uptime. New policy evaluations also require [current, request-bound evidence](docs/POLICY_EVIDENCE_HARDENING.md); missing or stale evidence routes to review.
 - **Policy source URLs tracked** — Each policy family has its own sources file in `rules/` linking to official policy pages.
 - **Compliance export** — `GET /api/compliance-export` returns a CSV snapshot of tracked sources, hashes, and pending candidate changes (`?format=json` for machine-readable output).
 - **Versioned rules** — Each rules file includes a `rules_version` field for staleness detection.

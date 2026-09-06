@@ -216,12 +216,96 @@
               "type": "string"
             }
           },
+          "automation_safe": {
+            "type": "boolean"
+          },
+          "policy_evidence": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string",
+                "enum": [
+                  "policy_evidence_v1"
+                ]
+              },
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "refund",
+                  "cancel",
+                  "return",
+                  "trial"
+                ]
+              },
+              "vendor": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "expired",
+                  "unavailable",
+                  "review_required"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              },
+              "current": {
+                "type": "boolean"
+              },
+              "evaluated_at": {
+                "type": "string"
+              },
+              "valid_until": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "checked_at": {
+                "type": "string"
+              },
+              "verified_at": {
+                "type": "string"
+              },
+              "snapshot_hash": {
+                "type": "string"
+              },
+              "snapshot_generated_at": {
+                "type": "string"
+              },
+              "source_hash": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "policy_version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "policy",
+              "vendor",
+              "status",
+              "reason",
+              "current",
+              "evaluated_at"
+            ],
+            "additionalProperties": true
+          },
           "rulebook_result": {
             "type": "object",
             "additionalProperties": true
           },
           "refundable": {
-            "type": "boolean"
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
           "window_days": {
             "type": "number"
@@ -438,6 +522,87 @@
               "type": "string"
             }
           },
+          "automation_safe": {
+            "type": "boolean"
+          },
+          "policy_evidence": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string",
+                "enum": [
+                  "policy_evidence_v1"
+                ]
+              },
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "refund",
+                  "cancel",
+                  "return",
+                  "trial"
+                ]
+              },
+              "vendor": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "expired",
+                  "unavailable",
+                  "review_required"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              },
+              "current": {
+                "type": "boolean"
+              },
+              "evaluated_at": {
+                "type": "string"
+              },
+              "valid_until": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "checked_at": {
+                "type": "string"
+              },
+              "verified_at": {
+                "type": "string"
+              },
+              "snapshot_hash": {
+                "type": "string"
+              },
+              "snapshot_generated_at": {
+                "type": "string"
+              },
+              "source_hash": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "policy_version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "policy",
+              "vendor",
+              "status",
+              "reason",
+              "current",
+              "evaluated_at"
+            ],
+            "additionalProperties": true
+          },
           "rulebook_result": {
             "type": "object",
             "additionalProperties": true
@@ -452,7 +617,10 @@
             "type": "number"
           },
           "billing_cadence": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -665,12 +833,96 @@
               "type": "string"
             }
           },
+          "automation_safe": {
+            "type": "boolean"
+          },
+          "policy_evidence": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string",
+                "enum": [
+                  "policy_evidence_v1"
+                ]
+              },
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "refund",
+                  "cancel",
+                  "return",
+                  "trial"
+                ]
+              },
+              "vendor": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "expired",
+                  "unavailable",
+                  "review_required"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              },
+              "current": {
+                "type": "boolean"
+              },
+              "evaluated_at": {
+                "type": "string"
+              },
+              "valid_until": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "checked_at": {
+                "type": "string"
+              },
+              "verified_at": {
+                "type": "string"
+              },
+              "snapshot_hash": {
+                "type": "string"
+              },
+              "snapshot_generated_at": {
+                "type": "string"
+              },
+              "source_hash": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "policy_version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "policy",
+              "vendor",
+              "status",
+              "reason",
+              "current",
+              "evaluated_at"
+            ],
+            "additionalProperties": true
+          },
           "rulebook_result": {
             "type": "object",
             "additionalProperties": true
           },
           "returnable": {
-            "type": "boolean"
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
           "return_window_days": {
             "type": "number"
@@ -901,6 +1153,87 @@
             "items": {
               "type": "string"
             }
+          },
+          "automation_safe": {
+            "type": "boolean"
+          },
+          "policy_evidence": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "type": "string",
+                "enum": [
+                  "policy_evidence_v1"
+                ]
+              },
+              "policy": {
+                "type": "string",
+                "enum": [
+                  "refund",
+                  "cancel",
+                  "return",
+                  "trial"
+                ]
+              },
+              "vendor": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "expired",
+                  "unavailable",
+                  "review_required"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              },
+              "current": {
+                "type": "boolean"
+              },
+              "evaluated_at": {
+                "type": "string"
+              },
+              "valid_until": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "checked_at": {
+                "type": "string"
+              },
+              "verified_at": {
+                "type": "string"
+              },
+              "snapshot_hash": {
+                "type": "string"
+              },
+              "snapshot_generated_at": {
+                "type": "string"
+              },
+              "source_hash": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string"
+              },
+              "policy_version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "policy",
+              "vendor",
+              "status",
+              "reason",
+              "current",
+              "evaluated_at"
+            ],
+            "additionalProperties": true
           },
           "rulebook_result": {
             "type": "object",

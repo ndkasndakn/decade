@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import "./test-helpers/install-policy-evidence-fixture.js";
 
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";

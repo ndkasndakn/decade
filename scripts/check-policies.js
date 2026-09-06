@@ -16,6 +16,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 import { buildAlertSignature } from "./lib/policy-feed-reliability.js";
 import { getPolicySupabaseConfig, supabaseRestRequest, supabaseUpsertRows } from "../lib/policy-supabase.js";
+import { buildPolicyEvidenceSnapshot, POLICY_EVIDENCE_ARTIFACT_PATH } from "../lib/policy-evidence-snapshot.js";
+import { validatePolicyStateArtifacts } from "../lib/policy-state-integrity.js";
 import {
   buildPolicyCoverageScorecard,
   formatPolicyCoverageScorecardMarkdown,
@@ -311,6 +313,7 @@ const POLICY_COVERAGE_SCORECARD_JSON_PATH = join(__dirname, "..", "rules", "poli
 const POLICY_COVERAGE_SCORECARD_MD_PATH = join(__dirname, "..", "rules", "policy-coverage-scorecard.md");
 const POLICY_COUNT_KEYS = ["refund", "cancel", "return", "trial"];
 const POLICY_SUPABASE_STATE_ARTIFACTS = [
+  POLICY_EVIDENCE_ARTIFACT_PATH,
   "rules/policy-hashes.json",
   "rules/cancel-policy-hashes.json",
   "rules/return-policy-hashes.json",
@@ -1066,6 +1069,7 @@ function writePolicyStatusReports(rows, generatedAtUtc) {
   }
 
   writeFileSync(POLICY_STATUS_REPORT_MD_PATH, lines.join("\n").trimEnd() + "\n");
+  return payload;
 }
 
 function writePolicyVendorLifecycleReports(report) {
@@ -1227,7 +1231,7 @@ async function hydratePolicyStateArtifactsFromSupabase(supabaseConfig) {
     method: "GET",
     path: "/rest/v1/policy_state_artifacts",
     params: {
-      select: "artifact_path,content_text",
+      select: "artifact_path,content_text,content_sha256,source,run_id,run_attempt,commit_sha,updated_at_utc",
     },
   });
   if (!result.ok) {
@@ -1240,17 +1244,13 @@ async function hydratePolicyStateArtifactsFromSupabase(supabaseConfig) {
     };
   }
 
-  const rows = Array.isArray(result.data) ? result.data : [];
-  const byPath = new Map();
-  for (const row of rows) {
-    const artifactPath = String(row?.artifact_path || "").trim();
-    if (!artifactPath) continue;
-    byPath.set(artifactPath, String(row?.content_text || ""));
-  }
+  const byPath = validatePolicyStateArtifacts(result.data,
+    POLICY_SUPABASE_STATE_ARTIFACTS.filter(path => path !== POLICY_EVIDENCE_ARTIFACT_PATH));
 
   let hydratedCount = 0;
   let missingCount = 0;
   for (const artifactPath of POLICY_SUPABASE_STATE_ARTIFACTS) {
+    if (artifactPath === POLICY_EVIDENCE_ARTIFACT_PATH) continue; // Output only, never a monitoring baseline.
     if (!byPath.has(artifactPath)) {
       missingCount += 1;
       continue;
@@ -3738,11 +3738,10 @@ export async function checkPolicySet({
   }
 
   const sources = readJson(sourcesPath, { vendors: {} });
-  const storedHashProfile =
+  const sourceHashProfile =
     typeof sources.hash_profile === "string" && sources.hash_profile.trim()
       ? sources.hash_profile.trim()
       : "";
-  const rebaselineForProfile = storedHashProfile !== HASH_PROFILE_ID;
   const storedHashes = readJson(hashesPath, {});
   const storedCandidates = readJson(candidatesPath, {});
   const storedCoverage = readJson(coveragePath, { vendors: {} });
@@ -3750,6 +3749,17 @@ export async function checkPolicySet({
   const storedBaselineState = readJson(baselinePath, { vendors: {} });
   const storedDailyFingerprintState = readJson(dailyFingerprintPath, { vendors: {} });
   const storedBlockedRetryState = readJson(blockedRetryPath, { vendors: {} });
+  // Mutable monitor state survives clean checkouts; source-file monitor metadata does not.
+  // Only matching policy/profile identities across every comparison artifact can supersede it.
+  const profileStates = [storedSemanticState, storedBaselineState, storedDailyFingerprintState];
+  const hasStateProfile = profileStates.some(state => Boolean(state?.hash_profile));
+  const stateProfilesAgree = profileStates.every(state => state?.policy === name
+    && typeof state?.hash_profile === "string" && state.hash_profile.trim()
+    && state.hash_profile === profileStates[0].hash_profile);
+  const storedHashProfile = hasStateProfile
+    ? (stateProfilesAgree ? profileStates[0].hash_profile : "")
+    : sourceHashProfile;
+  const rebaselineForProfile = storedHashProfile !== HASH_PROFILE_ID;
   const storedBaselineVendorsRaw =
     storedBaselineState && typeof storedBaselineState.vendors === "object" && storedBaselineState.vendors
       ? storedBaselineState.vendors
@@ -4505,6 +4515,8 @@ export async function checkPolicySet({
         }
 
         if (isUpdate || rebaselineForProfile || !previousHash) {
+          // A new crawler baseline is not a human policy approval. Persist this hold.
+          coverage.last_runtime_evidence_reset_utc = fetchedAtUtc;
           newHashes[vendor] = h;
           newSemanticProfiles[vendor] = semanticProfile;
           comparisonHashes[vendor] = h;
@@ -5463,6 +5475,9 @@ export async function checkPolicySet({
         source_volatility_tier: sourceVolatilityTier,
         last_successful_fetch_utc: String(coverage.last_successful_fetch_utc || ""),
         last_confirmed_change_utc: String(coverage.last_confirmed_change_utc || ""),
+        last_runtime_evidence_reset_utc: String(coverage.last_runtime_evidence_reset_utc || ""),
+        pending_candidate: Boolean(candidate),
+        quality_gate_failed: Boolean(coverage.last_quality_gate_failure_utc),
         last_fetch_failure_utc: String(coverage.last_fetch_failure_utc || ""),
         last_fetch_failure_reason: String(coverage.last_fetch_failure_reason || ""),
       };
@@ -5520,7 +5535,7 @@ async function main() {
   const supabaseConfig = getPolicySupabaseConfig();
   const supabaseStateHydrateResult = await hydratePolicyStateArtifactsFromSupabase(supabaseConfig);
   if (supabaseStateHydrateResult.enabled && !supabaseStateHydrateResult.ok) {
-    console.log(`::warning::Supabase state hydrate failed: ${supabaseStateHydrateResult.error}`);
+    throw new Error(`Policy state hydration failed: ${supabaseStateHydrateResult.error}`);
   }
   if (supabaseStateHydrateResult.enabled && supabaseStateHydrateResult.hydrated_count > 0) {
     console.log(
@@ -6113,7 +6128,9 @@ async function main() {
     now: new Date(generatedAtUtc),
   });
   writePolicyCoverageScorecard(policyCoverageScorecard);
-  writePolicyStatusReports(allVendorStatusRows, generatedAtUtc);
+  const statusReport = writePolicyStatusReports(allVendorStatusRows, generatedAtUtc);
+  writeFileSync(join(__dirname, "..", POLICY_EVIDENCE_ARTIFACT_PATH),
+    JSON.stringify(buildPolicyEvidenceSnapshot(statusReport), null, 2) + "\n");
   writeWeeklyTriageReports(allVendorStatusRows, generatedAtUtc);
   const changedDateUtc = generatedAtUtc.slice(0, 10);
   let alertFeedPublishState = {
