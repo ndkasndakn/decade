@@ -1,5 +1,6 @@
 import { compute, getSupportedVendors } from "../lib/trial-compute.js";
 import { createMcpHandler } from "../lib/mcp-handler.js";
+import { loadPolicyEvidenceSnapshot } from "../lib/policy-evidence-snapshot.js";
 import {
   buildPolicyMcpOutputSchema,
   POLICY_MCP_READ_ONLY_ANNOTATIONS,
@@ -67,7 +68,7 @@ function formatTextMessage(payload) {
 }
 
 export const MCP_TOOL_CONFIG = {
-  compute: (args) => compute(args, { requireCompleteContext: true }),
+  compute: async (args) => compute(args, { requireCompleteContext: true, evidenceSnapshot: await loadPolicyEvidenceSnapshot() }),
   tool: TOOL,
   formatTextMessage,
 };

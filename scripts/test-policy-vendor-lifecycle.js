@@ -84,6 +84,14 @@ function testCandidateNeedsBurnInAndHumanApplicabilityReview() {
   assert.equal(report.automatic_candidate_promotion, false);
 
   registry.candidates.candidate_vendor.policies.return.review_status = "approved";
+  const incompleteSignoff = buildPolicyVendorLifecycleReport({ rows: [], candidateRegistry: registry, candidateState: state,
+    now: new Date("2026-07-30T12:00:00Z") });
+  assert.equal(incompleteSignoff.candidates[0].ready_for_review, false, "An approval flag without review ownership and evidence is not sign-off");
+  Object.assign(registry.candidates.candidate_vendor.policies.return, {
+    review_owner: "test-policy-maintainer", reviewed_by: "test-policy-maintainer", reviewed_at_utc: "2026-07-30T10:00:00Z",
+    review_scope: "Direct subscription only", review_disposition: "not_applicable_to_scoped_subscription",
+    review_id: "test-review", evidence_urls: ["https://vendor.example/subscription-terms"],
+  });
   const approvedReport = buildPolicyVendorLifecycleReport({
     rows: [],
     candidateRegistry: registry,

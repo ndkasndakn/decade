@@ -1,0 +1,158 @@
+{
+  "schema_version": "policy_candidate_applicability_review_v1",
+  "assessment_date_utc": "2026-09-06",
+  "status": "research_complete_maintainer_signoff_pending",
+  "scope_note": "Recommendations are internal product-taxonomy judgments based on linked official sources, not claims that a vendor has no return policy or legal entitlement. No candidate is admitted and no rulebook is promoted by this packet.",
+  "review_owner_role": "policy_maintainer",
+  "review_owner": null,
+  "approval_instructions": "Assign a named maintainer. Resolve each scoped-product blocker, approve or reject the recommendation, and record reviewed_by, reviewed_at_utc, scope and evidence URLs. Approval of applicability does not approve deterministic vendor rules.",
+  "reviews": [
+    {
+      "review_id": "clickup-return-applicability-20260906",
+      "vendor": "clickup",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "not_applicable_to_scoped_subscription",
+      "scope": "Direct ClickUp paid workspace subscription only. Not merchandise, marketplace purchases or a general consumer-return rule.",
+      "source_urls": [
+        "https://help.clickup.com/hc/en-us/articles/6303244318999-Pricing-per-user-role-and-plan"
+      ],
+      "finding": "The official page describes role-based software subscription fees and an initial paid-plan refund guarantee. This supports a subscription/refund scope, not a physical-goods return decision.",
+      "admission_blockers": [
+        "Confirm the individual-plan interpretation of a workspace/team product before admission.",
+        "Keep initial subscription purchase distinct from renewals."
+      ]
+    },
+    {
+      "review_id": "miro-return-applicability-20260906",
+      "vendor": "miro",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "not_applicable_to_scoped_subscription",
+      "scope": "Direct Miro Starter or Business subscription only. Excludes marketplace apps and customer transactions.",
+      "source_urls": [
+        "https://help.miro.com/hc/en-us/articles/360017571694-Manage-your-subscription"
+      ],
+      "finding": "The official article covers administrative billing actions, subscription cancellation and support review of incorrect charges. It does not establish a blanket merchandise or digital-product return entitlement.",
+      "admission_blockers": [
+        "Do not map Starter/Business team administration onto US individual plans without an explicit scope decision.",
+        "Do not infer a deterministic refund entitlement from instructions to contact support."
+      ]
+    },
+    {
+      "review_id": "monday_com-return-applicability-20260906",
+      "vendor": "monday_com",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "not_applicable_to_scoped_subscription",
+      "scope": "Direct monday.com software account subscription only. Excludes marketplace apps, separately negotiated terms and downstream customer sales.",
+      "source_urls": [
+        "https://support.monday.com/hc/en-us/articles/115005320069-Refund-eligibility"
+      ],
+      "finding": "The official policy distinguishes first-time purchases, renewed accounts and seat auto-upgrades. It describes subscription refunds and cancellation, not a separate physical-return operation.",
+      "admission_blockers": [
+        "Initial purchase versus renewal and notice periods need distinct facts.",
+        "Account administrator authority and team-plan scope are not captured by the current individual-plan label."
+      ]
+    },
+    {
+      "review_id": "typeform-return-applicability-20260906",
+      "vendor": "typeform",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "not_applicable_to_scoped_subscription",
+      "scope": "Direct Typeform paid subscription only. Excludes respondent payments collected through forms and third-party products.",
+      "source_urls": [
+        "https://help.typeform.com/hc/en-us/articles/360038887692-What-happens-if-I-cancel-my-paid-account"
+      ],
+      "finding": "The official article discusses downgrading paid features, prepaid billing periods and refunds for canceled plans. A separate goods-return decision is not established for this scoped subscription.",
+      "admission_blockers": [
+        "Do not treat the absence of a goods-return operation as a denial of subscription refund rights.",
+        "Form respondent purchases are a different merchant relationship."
+      ]
+    },
+    {
+      "review_id": "vimeo-return-applicability-20260906",
+      "vendor": "vimeo",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "not_applicable_to_scoped_subscription",
+      "scope": "Direct Vimeo platform subscription only. Excludes Vimeo OTT creator sales, viewer purchases, add-ons and app-store billing.",
+      "source_urls": [
+        "https://help.vimeo.com/hc/en-us/articles/12425462316433-FAQ-Refunds-for-Vimeo-subscriptions"
+      ],
+      "finding": "The official article separates monthly and annual initial subscriptions, app-store purchases and add-ons. Its subject is platform subscription refunds, not a generic return right across Vimeo products.",
+      "admission_blockers": [
+        "Billing cadence and purchase channel must be represented before a deterministic refund rule.",
+        "Do not include OTT viewers or creator sales under the platform subscription policy."
+      ]
+    },
+    {
+      "review_id": "skillshare-return-applicability-20260906",
+      "vendor": "skillshare",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "split_product_scope_required",
+      "scope": "Membership subscription, digital-product purchase and one-to-one session must be separate scopes.",
+      "source_urls": [
+        "https://help.skillshare.com/hc/en-us/articles/204536798-Can-I-get-a-refund-for-my-Skillshare-subscription-or-purchase"
+      ],
+      "finding": "The official policy expressly addresses non-returnable digital products separately from membership refunds and session disputes. A vendor-wide 'return not applicable' approval would erase a real product distinction.",
+      "admission_blockers": [
+        "Split membership, digital products and sessions before signing off applicability.",
+        "Keep trials, renewals, usage conditions, app-store billing and regional exceptions distinct."
+      ]
+    },
+    {
+      "review_id": "thinkific-return-applicability-20260906",
+      "vendor": "thinkific",
+      "policy": "return",
+      "research_status": "complete",
+      "assessed_at_utc": "2026-09-06",
+      "assessed_by": "Codex automated research",
+      "human_approval": false,
+      "review_owner_role": "policy_maintainer",
+      "review_owner": null,
+      "recommendation": "broader_primary_policy_required",
+      "scope": "Creator's direct Thinkific platform subscription only. Never substitute this for a learner's purchase from a course creator.",
+      "source_urls": [
+        "https://support.thinkific.com/hc/en-us/articles/41582716364567-Thinkific-s-2026-Plan-Pricing-Update-What-It-Means-for-You"
+      ],
+      "finding": "The tracked refund source is a 2026 pricing-change article. It discusses cancellation and jurisdiction-dependent annual-term refunds but is not sufficient evidence for a general return or refund policy.",
+      "admission_blockers": [
+        "Review broad platform billing terms before approving policy scope.",
+        "Retain the learner-versus-platform customer boundary and jurisdiction conditions."
+      ]
+    }
+  ]
+}

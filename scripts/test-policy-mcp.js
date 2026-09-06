@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import "./test-helpers/install-policy-evidence-fixture.js";
 import { readFileSync } from "node:fs";
 
 import policyMcp from "../api/policy-mcp.js";

@@ -9,13 +9,14 @@ on:
       - "docs/**"
       - "lib/**"
       - "public/**"
-      - "rules/*-policy-sources.json"
+      - "rules/**"
       - "rules/policy-vendor-candidates.json"
       - "scripts/**"
       - "sdk/**"
       - "README.md"
       - "middleware.js"
       - "package.json"
+      - "package-lock.json"
       - "server.json"
       - ".github/workflows/contract-policy-tests.yml"
   pull_request:
@@ -24,13 +25,14 @@ on:
       - "docs/**"
       - "lib/**"
       - "public/**"
-      - "rules/*-policy-sources.json"
+      - "rules/**"
       - "rules/policy-vendor-candidates.json"
       - "scripts/**"
       - "sdk/**"
       - "README.md"
       - "middleware.js"
       - "package.json"
+      - "package-lock.json"
       - "server.json"
       - ".github/workflows/contract-policy-tests.yml"
   workflow_dispatch:
@@ -49,6 +51,19 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24"
+
+      - name: Install pinned test dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Run policy evidence and strict schema regressions
+        run: |
+          npm run test:policy-evidence
+          npm run test:policy-mcp-contracts
+          npm run test:policy-mcp-http
+          npm run test:policy-candidate-reviews
+
+      - name: Verify policy artifact database boundary in isolated PostgreSQL
+        run: env PATH="$(pg_config --bindir):$PATH" npm run test:policy-evidence-postgres
 
       - name: Run decision contract tests
         run: |

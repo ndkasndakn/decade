@@ -1,5 +1,6 @@
 import { compute, getSupportedVendors } from "../lib/return-compute.js";
 import { createMcpHandler } from "../lib/mcp-handler.js";
+import { loadPolicyEvidenceSnapshot } from "../lib/policy-evidence-snapshot.js";
 import {
   buildPolicyMcpOutputSchema,
   POLICY_MCP_READ_ONLY_ANNOTATIONS,
@@ -45,7 +46,7 @@ export const TOOL = {
     required: ["vendor", "days_since_purchase", "region", "plan"],
   },
   outputSchema: buildPolicyMcpOutputSchema(["RETURNABLE", "EXPIRED", "NON_RETURNABLE", "UNKNOWN"], {
-    returnable: { type: "boolean" },
+    returnable: { type: ["boolean", "null"] },
     return_window_days: { type: "number" },
     return_type: { type: "string" },
     method: { type: "string" },
@@ -59,7 +60,7 @@ function formatTextMessage(payload) {
 }
 
 export const MCP_TOOL_CONFIG = {
-  compute: (args) => compute(args, { requireCompleteContext: true }),
+  compute: async (args) => compute(args, { requireCompleteContext: true, evidenceSnapshot: await loadPolicyEvidenceSnapshot() }),
   tool: TOOL,
   formatTextMessage,
 };

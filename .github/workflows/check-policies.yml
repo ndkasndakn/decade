@@ -685,6 +685,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
           path: |
+            rules/policy-runtime-evidence.json
             rules/policy-alert-feed.json
             rules/policy-alert-review-feed.json
             rules/policy-events.ndjson
