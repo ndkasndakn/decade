@@ -1,0 +1,89 @@
+{
+  "schema_version": "policy_coverage_scorecard_v1",
+  "generated_at_utc": "2026-09-06T21:14:01.000Z",
+  "counting_contract": {
+    "tracked": "admitted production vendors plus isolated candidate vendors",
+    "admitted": "vendors present in reviewed production rulebooks",
+    "decision_ready": "production surfaces with deterministic or conditional decision_mode",
+    "candidates_are_supported": false
+  },
+  "targets": {
+    "tracked_vendors": 200,
+    "admitted_vendors": 150,
+    "decision_ready_surfaces": 300
+  },
+  "production": {
+    "admitted_vendor_count": 100,
+    "configured_policy_surface_count": 400,
+    "decision_ready_surface_count": 179,
+    "review_only_surface_count": 121,
+    "observed_offer_surface_count": 100,
+    "unknown_surface_count": 0,
+    "decision_mode_counts": {
+      "deterministic": 141,
+      "conditional": 38,
+      "review_only": 121,
+      "observed": 100
+    },
+    "policy_mode_counts": {
+      "cancel": {
+        "deterministic": 96,
+        "conditional": 2,
+        "review_only": 2
+      },
+      "refund": {
+        "review_only": 59,
+        "conditional": 18,
+        "deterministic": 23
+      },
+      "return": {
+        "review_only": 60,
+        "conditional": 18,
+        "deterministic": 22
+      },
+      "trial": {
+        "observed": 100
+      }
+    },
+    "primary_source_surface_count": 400,
+    "unique_primary_source_url_count": 234,
+    "surfaces_with_backup_source_count": 192,
+    "backup_source_url_count": 374,
+    "lifecycle_counts": {
+      "monitored": 94,
+      "expired": 5,
+      "degraded": 1
+    }
+  },
+  "candidates": {
+    "candidate_vendor_count": 7,
+    "monitored_policy_surface_count": 21,
+    "manual_review_surface_count": 7,
+    "ready_for_review_vendor_count": 0,
+    "cohort_counts": {
+      "2026-07-source-qualified-01": 7
+    },
+    "segment_counts": {
+      "creator_education": 2,
+      "creator_video": 1,
+      "b2b_saas": 4
+    },
+    "demand_tier_counts": {
+      "1": 3,
+      "2": 4
+    },
+    "source_strategy_counts": {
+      "structured_help_center_api": 7
+    },
+    "monitor_counts": {
+      "zendesk_api": 21,
+      "manual_review": 7
+    }
+  },
+  "network": {
+    "tracked_vendor_count": 107,
+    "tracked_target_progress_percent": 53.5,
+    "admitted_target_progress_percent": 66.7,
+    "decision_ready_target_progress_percent": 59.7
+  }
+}
